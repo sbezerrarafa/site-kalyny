@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalyne Wanessa — Personal Trainer</title>
+  <meta name="description" content="Personal Trainer — Avaliação postural, treinos personalizados, aulas presenciais, consultoria online e suporte diário." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta baseada na arte enviada */
+      --brand: #ff2f92;
+      /* rosa forte */
+      --brand-2: #c6007e;
+      /* magenta profundo */
+      --brand-3: #ff6fb1;
+      /* rosa claro/acento */
+      --bg: #0b0b0f;
+      /* quase preto */
+      --surface: #121217;
+      /* superfície escura */
+      --surface-2: #181820;
+      /* variação */
+      --line: #23232b;
+      /* linha divisória */
+      --text: #f5f6f8;
+      /* texto principal */
+      --muted: #a1a6b0;
+      /* texto secundário */
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 110% -10%, rgba(255, 47, 146, .14), transparent 60%),
+        radial-gradient(900px 700px at -20% 10%, rgba(198, 0, 126, .18), transparent 60%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    section {
+      padding: 72px 0
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      backdrop-filter: saturate(120%) blur(8px);
+      background: rgba(11, 11, 15, .7);
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700
+    }
+
+    .brand .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 20px rgba(255, 47, 146, .35)
+    }
+
+    .brand .logo svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    .menu a {
+      opacity: .9
+    }
+
+    .menu a:hover {
+      opacity: 1
+    }
+
+    .nav a.btn {
+      padding: .65rem 1rem;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 999px
+    }
+
+    .nav a.btn--primary {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      border: none;
+      box-shadow: 0 8px 22px rgba(255, 47, 146, .35)
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text)
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items: center;
+      padding: 56px 20px 40px
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 47, 146, .13);
+      color: #ffd9ea;
+      border: 1px solid rgba(255, 47, 146, .28);
+      font-weight: 600;
+      letter-spacing: .3px
+    }
+
+    .title-xl {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin: .6rem 0 1rem
+    }
+
+    .sub {
+      color: var(--muted);
+      max-width: 56ch
+    }
+
+    .cta {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      transition: .2s transform, .2s box-shadow
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow)
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      border: none
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, .18)
+    }
+
+    .hero-art {
+      position: relative;
+      height: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 47, 146, .18), rgba(0, 0, 0, .35)), url('https://images.unsplash.com/photo-1571907480495-4328d49e1a58?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      box-shadow: var(--shadow)
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -10% -10%;
+      height: 160px;
+      background: linear-gradient(0deg, var(--bg) 2%, rgba(11, 11, 15, 0) 80%)
+    }
+
+    /* Grid util */
+    .grid {
+      display: grid;
+      gap: 20px
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px
+    }
+
+    /* Cards escuros */
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px -1px auto -1px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand), transparent)
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 47, 146, .12);
+      border: 1px solid rgba(255, 47, 146, .25);
+      color: #ffd9ea;
+      font-size: .8rem;
+      font-weight: 600
+    }
+
+    .service-media {
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 12px 0;
+      background: #0f0f14
+    }
+
+    .service-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.05)
+    }
+
+    /* Sobre */
+    .about {
+      background: linear-gradient(180deg, rgba(198, 0, 126, .12), rgba(255, 255, 255, .01));
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: var(--radius);
+      padding: 28px
+    }
+
+    .about h3 {
+      margin-top: 0;
+      font-size: 1.8rem
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px
+    }
+
+    .kpi {
+      background: var(--surface-2);
+      border: 1px solid rgba(255, 255, 255, .06);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center
+    }
+
+    .kpi strong {
+      font-size: 1.6rem
+    }
+
+    /* Planos */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .plan {
+      padding: 26px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: var(--surface-2)
+    }
+
+    .plan.pop {
+      background: linear-gradient(180deg, rgba(255, 47, 146, .18), rgba(24, 24, 32, .9));
+      border-color: rgba(255, 47, 146, .45);
+      position: relative
+    }
+
+    .plan.pop .flag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: .75rem;
+      background: var(--brand);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 999px
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800
+    }
+
+    .plan ul {
+      padding-left: 18px
+    }
+
+    .plan li {
+      margin: .35rem 0
+    }
+
+    /* Depoimentos */
+    .quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .quote {
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: var(--surface)
+    }
+
+    .quote .who {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2))
+    }
+
+    /* CTA Final */
+    .cta-band {
+      margin: 40px 0 0;
+      padding: 26px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #201520, #121215);
+      border: 1px solid rgba(255, 255, 255, .08);
+      position: relative;
+      overflow: hidden
+    }
+
+    .cta-band::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -40px;
+      top: -40px;
+      border-radius: 50%;
+      filter: blur(40px);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 47, 146, .45), rgba(198, 0, 126, .2), transparent 70%)
+    }
+
+    /* Banner fino WhatsApp */
+    .wa-banner {
+      margin-top: 18px;
+      border-radius: 16px;
+      padding: 14px 18px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow)
+    }
+
+    .wa-banner p {
+      margin: 0;
+      font-weight: 600
+    }
+
+    .wa-banner a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, .25);
+      border: 1px solid rgba(255, 255, 255, .3)
+    }
+
+    /* Footer */
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      color: var(--muted)
+    }
+
+    /* Util */
+    .muted {
+      color: var(--muted)
+    }
+
+    .center {
+      text-align: center
+    }
+
+    /* Responsivo */
+    @media (max-width: 1000px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 24px
+      }
+
+      .two {
+        grid-template-columns: 1fr
+      }
+
+      .plans {
+        grid-template-columns: 1fr
+      }
+
+      .quotes {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media (max-width: 680px) {
+      .menu {
+        display: none
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px
+      }
+
+      .drawer {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: 86%;
+        max-width: 360px;
+        background: #111117;
+        transform: translateX(105%);
+        transition: .25s;
+        z-index: 80;
+        padding: 22px
+      }
+
+      .drawer.open {
+        transform: translateX(0)
+      }
+
+      .drawer a {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, .08)
+      }
+
+      .quotes {
+        grid-template-columns: 1fr
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="logo" aria-label="Logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 18L10 6l2.4 4.8L16 6l4 12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span>Kalyne Wanessa</span>
+      </a>
+
+      <nav class="menu" aria-label="principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#planos">Planos</a>
+        <a href="#depoimentos">Resultados</a>
+        <a class="btn btn--primary" href="#contato">Agendar agora</a>
+      </nav>
+
+      <button class="nav-toggle btn" aria-label="Abrir menu" onclick="toggleDrawer()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="container" style="padding:0">
+      <a href="#servicos" onclick="toggleDrawer(false)">Serviços</a>
+      <a href="#sobre" onclick="toggleDrawer(false)">Sobre</a>
+      <a href="#planos" onclick="toggleDrawer(false)">Planos</a>
+      <a href="#depoimentos" onclick="toggleDrawer(false)">Resultados</a>
+      <a href="#contato" class="btn btn-primary" style="margin-top:16px" onclick="toggleDrawer(false)">Agendar avaliação</a>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="badge">Agenda aberta • Vagas limitadas</span>
+        <h1 class="title-xl">Treino <span style="background:linear-gradient(90deg,var(--brand),var(--brand-3)); -webkit-background-clip:text; background-clip:text; color:transparent">individualizado</span> para resultados reais.</h1>
+        <p class="sub">Avaliação postural completa, periodização assertiva, aulas presenciais e consultoria online com suporte diário. Método pensado para sua rotina.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contato">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 2 11 13" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+              <path d="M22 2 15 22l-4-9-9-4 20-7Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Agendar avaliação
+          </a>
+          <a class="btn btn-outline" href="#planos">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+              <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            Ver planos
+          </a>
+        </div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span class="chip">Avaliação postural</span>
+            <span class="chip">Treino personalizado</span>
+            <span class="chip">Consultoria online</span>
+            <span class="chip">Aulas presenciais</span>
+            <span class="chip">Suporte diário</span>
+            <span class="chip">Emagrecimento</span>
+            <span class="chip">Hipertrofia</span>
+            <span class="chip">Condicionamento</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Foto ilustrativa de treino em academia">
+        <img src="./kalyne.png" alt="" style="width: 100%;">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="container">
+      <h2 class="center" style="margin-top:0">Serviços</h2>
+      <p class="center muted">Tudo o que você precisa para evoluir com segurança e constância.</p>
+      <div class="grid grid-3" style="margin-top:20px">
+        <article class="card">
+          <span class="pill">Avaliação postural</span>
+          <div class="service-media"><img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1470&auto=format&fit=crop" alt="Avaliação postural" /></div>
+          <h3>Mapa corporal e anamnese</h3>
+          <p class="muted">Identificação de desequilíbrios e criação do plano de ação específico para o seu corpo e objetivos.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Treino individualizado</span>
+          <div class="service-media"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1470&auto=format&fit=crop" alt="Treino personalizado" /></div>
+          <h3>Periodização inteligente</h3>
+          <p class="muted">Planilhas dinâmicas, ajustes semanais e acompanhamento de métricas para progresso constante.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Aulas presenciais</span>
+          <div class="service-media"><img src="https://images.unsplash.com/photo-1554344728-77cf90d9ed26?q=80&w=1470&auto=format&fit=crop" alt="Aulas presenciais" /></div>
+          <h3>Técnica e segurança</h3>
+          <p class="muted">Execução supervisionada, ajustes de postura e variações seguras para cada exercício.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE (apenas o bloco principal; removi "Vantagens") -->
+  <section id="sobre">
+    <div class="container">
+      <div class="about">
+        <h3>Sobre mim</h3>
+        <p>Sou <strong>Personal Trainer</strong> especializada em avaliação postural e prescrição de treino individualizado. Meu método une ciência, acompanhamento próximo e um sistema simples de metas para que você evolua com foco e prazer.</p>
+        <div class="kpis">
+          <div class="kpi"><strong>+120</strong>
+            <div class="muted">alunos ativos</div>
+          </div>
+          <div class="kpi"><strong>98%</strong>
+            <div class="muted">satisfação</div>
+          </div>
+          <div class="kpi"><strong>7 anos</strong>
+            <div class="muted">de experiência</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos">
+    <div class="container">
+      <h2 class="center" style="margin-top:0">Planos</h2>
+      <p class="center muted">Escolha o formato que faz sentido para sua rotina. Sem fidelidade.</p>
+      <div class="plans" style="margin-top:20px">
+        <div class="plan">
+          <h3>Consultoria Online</h3>
+          <p class="muted">Treino no app + suporte diário.</p>
+          <div class="price">R$ 179<span style="font-size:.9rem">/mês</span></div>
+          <ul>
+            <li>Avaliação inicial por vídeo</li>
+            <li>Planilha personalizada</li>
+            <li>Revisão semanal</li>
+            <li>Suporte via WhatsApp</li>
+          </ul>
+          <a href="#contato" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px">Quero este</a>
+        </div>
+        <div class="plan pop">
+          <span class="flag">Mais escolhido</span>
+          <h3>Híbrido</h3>
+          <p class="muted">Aulas presenciais + consultoria.</p>
+          <div class="price">R$ 299<span style="font-size:.9rem">/mês</span></div>
+          <ul>
+            <li>1 aula presencial/semana</li>
+            <li>Treino no app e ajustes</li>
+            <li>Check-ins de progresso</li>
+            <li>Suporte diário</li>
+          </ul>
+          <a href="#contato" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px">Quero este</a>
+        </div>
+        <div class="plan">
+          <h3>Presencial</h3>
+          <p class="muted">Foco total na execução.</p>
+          <div class="price">R$ 89<span style="font-size:.9rem">/sessão</span></div>
+          <ul>
+            <li>Aulas individuais</li>
+            <li>Correções de técnica</li>
+            <li>Periodização mensal</li>
+            <li>Acesso ao app</li>
+          </ul>
+          <a href="#contato" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px">Quero este</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos">
+    <div class="container">
+      <h2 class="center" style="margin-top:0">Resultados dos alunos</h2>
+      <p class="center muted">Transformações reais com acompanhamento próximo.</p>
+      <div class="quotes" style="margin-top:20px">
+        <div class="quote">
+          <p>“Em 3 meses perdi 7kg sem cortar tudo que eu gosto. O suporte diário fez total diferença.”</p>
+          <div class="who">
+            <div class="avatar"></div>
+            <div><strong>Bruna M.</strong>
+              <div class="muted">Consultoria Online</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          <p>“Corrigi minha postura e parei de sentir dor lombar. Hoje treino com confiança.”</p>
+          <div class="who">
+            <div class="avatar"></div>
+            <div><strong>Fábio A.</strong>
+              <div class="muted">Híbrido</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          <p>“Voltei a gostar de academia. Cada aula tem um propósito e eu vejo evolução.”</p>
+          <div class="who">
+            <div class="avatar"></div>
+            <div><strong>Karina S.</strong>
+              <div class="muted">Presencial</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-band" style="margin-top:28px">
+        <div class="two" style="align-items:center; grid-template-columns:2fr 1fr">
+          <div>
+            <h3 style="margin:0 0 6px">Pronta(o) para começar?</h3>
+            <p class="muted" style="margin:0">Garanta sua avaliação postural e receba seu plano de treino em até 48h.</p>
+          </div>
+          <div style="text-align:right">
+            <a class="btn btn-primary" href="#contato">Agendar agora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO + BANNER WHATSAPP -->
+  <!-- <section id="contato">
+    <div class="container two" style="align-items:start">
+      <div class="card">
+        <h3>Agende sua avaliação</h3>
+        <p class="muted">Preencha seus dados que retornarei em breve pelo WhatsApp.</p>
+        <form id="form" onsubmit="return submitForm(event)">
+          <div class="grid" style="grid-template-columns:1fr 1fr; gap:14px">
+            <label>Nome<input required type="text" name="name" placeholder="Seu nome" style="width:100%"></label>
+            <label>WhatsApp<input required type="tel" name="phone" placeholder="(00) 90000-0000" style="width:100%"></label>
+            <label style="grid-column:1/-1">Objetivo
+              <select name="goal" style="width:100%">
+                <option>Emagrecimento</option>
+                <option>Hipertrofia</option>
+                <option>Condicionamento</option>
+                <option>Correção postural</option>
+              </select>
+            </label>
+            <label style="grid-column:1/-1">Mensagem
+              <textarea name="msg" rows="4" placeholder="Conte um pouco sobre você" style="width:100%"></textarea>
+            </label>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; margin-top:14px">
+            <button class="btn btn-primary" type="submit">Enviar pelo WhatsApp</button>
+            <span id="formStatus" class="muted" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Banner fino substituindo o card "Local e horários" -->
+  <div>
+    <div class="wa-banner" style="margin:50px ;">
+      <p>📲 Fale comigo agora pelo WhatsApp e garanta sua avaliação!</p>
+      <a id="waBanner" href="https://wa.me/5599999999999" target="_blank" rel="noopener">Abrir WhatsApp</a>
+    </div>
+  </div>
+  </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div style="display:flex; align-items:center; gap:10px">
+        <span class="logo" style="width:28px;height:28px"></span>
+        <span class="muted">© <span id="year"></span> Kalyne Wanessa — Personal Trainer</span>
+      </div>
+      <div class="muted">Feito com ❤ e disciplina</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDrawer(force) {
+      const drawer = document.getElementById('drawer');
+      const open = typeof force === 'boolean' ? force : !drawer.classList.contains('open');
+      drawer.classList.toggle('open', open);
+      drawer.setAttribute('aria-hidden', String(!open));
+    }
+    document.addEventListener('keyup', (e) => { if (e.key === 'Escape') toggleDrawer(false) });
+
+    function submitForm(e) {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const name = f.get('name');
+      const phone = (f.get('phone') || '').replace(/\D/g, '');
+      const goal = f.get('goal');
+      const msg = f.get('msg') || '';
+      const text = encodeURIComponent(`Olá! Sou ${name}. Meu objetivo: ${goal}. ${msg}`);
+      const link = `https://wa.me/55${phone}?text=${text}`;
+      document.getElementById('formStatus').textContent = 'Abrindo WhatsApp…';
+      setTimeout(() => { window.open(link, '_blank'); document.getElementById('formStatus').textContent = ''; }, 400);
+      return false;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <style>
+    input,
+    select,
+    textarea {
+      background: #0f0f14;
+      border: 1px solid #26262f;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px 12px;
+      outline: none
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(255, 47, 146, .14)
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: .95rem
+    }
+  </style>
+</body>
+
+</html>
